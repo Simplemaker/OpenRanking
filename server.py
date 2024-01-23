@@ -8,6 +8,7 @@ server_data = {
     "ranking": None
 }
 
+
 @app.route('/start', methods=['POST'])
 def start():
     # Simulate starting a new session or quiz
@@ -26,15 +27,19 @@ def start():
 
 @app.route('/next', methods=['GET'])
 def next_question():
-    # Simulate moving to the next question
     pair = server_data['ranking'].getNextPair()
-
+    print(pair)
     return jsonify({'pair': pair})
+
+
+@app.route('/rankings', methods=['GET'])
+def rankings():
+    rankings = server_data['ranking'].getRankings()
+    return jsonify({'rankings': rankings})
 
 
 @app.route('/submit', methods=['POST'])
 def submit_answer():
-    # Simulate submitting an answer
     data = request.json
     first, second = data.get('pair')
     firstBetter = data.get('firstBetter')
