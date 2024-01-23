@@ -1,0 +1,4 @@
+yarn.lock
+static/bundle*
+node_modules
+__pycache__
